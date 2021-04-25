@@ -26,46 +26,41 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Ineza
  */
-@WebServlet(urlPatterns = {"/Controller/createNanny","/Controller/addSkills","/Controller/removeSkills","/Controller/saveNanny","/Controller/loginNanny"})
+@WebServlet(urlPatterns = {"/Controller/createNanny", "/Controller/addSkills", "/Controller/removeSkills", "/Controller/saveNanny", "/Controller/loginNanny", "/Controller/logoutNanny"})
 public class Controller extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String path = request.getServletPath();
-        
+
         switch (path) {
             case "/Controller/createNanny":
                 createNanny(request, response);
                 break;
-                
+
             case "/Controller/addSkills":
                 addSkills(request, response);
                 break;
-                
+
             case "/Controller/removeSkills":
                 removeSkills(request, response);
                 break;
-                
+
             case "/Controller/saveNanny":
                 saveNanny(request, response);
                 break;
-                
+
             case "/Controller/logoutNanny":
-                logoutNanny(request,response);
+                logoutNanny(request, response);
                 break;
-            
+
             case "/Controller/loginNanny":
-                break;
-                
-            case "/Controller/logoutParent":
-                break;
-              
-            case "/Controller/loginParent":
+                loginNanny(request, response);
                 break;
         }
     }
-    
-        private void createNanny(HttpServletRequest request, HttpServletResponse response)
+
+    private void createNanny(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
         RequestDispatcher dis = request.getRequestDispatcher("/chooseSkill.jsp");
@@ -99,8 +94,7 @@ public class Controller extends HttpServlet {
         response.sendRedirect("../chooseSkills.jsp");
 
     }
-    
-    
+
     private void logoutNanny(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
@@ -111,71 +105,89 @@ public class Controller extends HttpServlet {
 
     }
 
-    private void addSkills(HttpServletRequest request, HttpServletResponse response) 
+    private void loginNanny(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
-         RequestDispatcher dis = request.getRequestDispatcher("chooseSkills.jsp");
-         String code = request.getParameter("code");
-         
-         Nanny n = (Nanny) request.getSession().getAttribute("nannies");
-         
-         if (n==null) {
+
+        String email = request.getParameter("email");
+        String password = request.getParameter("password");
+
+        GenericDao<Nanny> ndao = new GenericDao<>(Nanny.class);
+
+        try {
+
+            Nanny nanny = ndao.findById(email);
+            if (nanny != null && nanny.getPassword().equals(password)) {
+                request.getSession().setAttribute("nanny", nanny);
+                response.sendRedirect("../viewBookings.jsp");
+            } else {
+                response.sendRedirect("../errorPage.jsp");
+            }
+        } catch (Exception e) {
+            response.sendRedirect("../errorPage.jsp");
+        }
+
+    }
+
+    private void addSkills(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+
+        RequestDispatcher dis = request.getRequestDispatcher("chooseSkills.jsp");
+        String code = request.getParameter("code");
+
+        Nanny n = (Nanny) request.getSession().getAttribute("nannies");
+
+        if (n == null) {
             dis = request.getRequestDispatcher("/RegisterNanny.jsp");
             response.sendRedirect("../RegisterNanny.jsp");
         }
-         
+
         GenericDao<Skill> sdao = new GenericDao<Skill>(Skill.class);
         Skill s = sdao.findById(code);
         n.registerSkill(s);
 
         response.sendRedirect("../chooseSkills.jsp");
-         
-        
+
     }
 
-    private void removeSkills(HttpServletRequest request, HttpServletResponse response) 
-             throws ServletException, IOException {
-        
-         RequestDispatcher dis = request.getRequestDispatcher("/chooseSkills.jsp");
-         String code = request.getParameter("code");
-         
-         Nanny n = (Nanny) request.getSession().getAttribute("nannies");
-         
-         if (n==null) {
+    private void removeSkills(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+
+        RequestDispatcher dis = request.getRequestDispatcher("/chooseSkills.jsp");
+        String code = request.getParameter("code");
+
+        Nanny n = (Nanny) request.getSession().getAttribute("nannies");
+
+        if (n == null) {
             dis = request.getRequestDispatcher("/RegisterNanny.jsp");
             response.sendRedirect("../RegisterNanny.jsp");
         }
-         
+
         GenericDao<Skill> sdao = new GenericDao<Skill>(Skill.class);
         Skill s = sdao.findById(code);
         n.removeSkill(s);
 
         response.sendRedirect("../chooseSkills.jsp");
-         
-     
-     
-            
+
     }
 
-    private void saveNanny(HttpServletRequest request, HttpServletResponse response) 
-             throws ServletException, IOException {
-        
-         RequestDispatcher dis = request.getRequestDispatcher("/viewBookings.jsp");
-         
-         Nanny n = (Nanny) request.getSession().getAttribute("nannies");
-         
-         if (n==null) {
+    private void saveNanny(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+
+        RequestDispatcher dis = request.getRequestDispatcher("/viewBookings.jsp");
+
+        Nanny n = (Nanny) request.getSession().getAttribute("nannies");
+
+        if (n == null) {
             dis = request.getRequestDispatcher("/RegisterNanny.jsp");
             dis.forward(request, response);
         }
-         
+
         GenericDao<Nanny> sdao = new GenericDao<Nanny>(Nanny.class);
-        
+
         sdao.create(n);
 
         response.sendRedirect("../viewBookings.jsp");
-         
-        
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -216,7 +228,5 @@ public class Controller extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
-
-
 
 }

@@ -15,6 +15,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 
 /**
@@ -23,26 +24,26 @@ import javax.persistence.ManyToMany;
  */
 @Entity
 public class Nanny {
-    @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
-    private Long nId;
+    
     private String name;
     private String gender;
     private Date dob;
     private String phone;
+    @Id
     private String email;
     private String location;
     private Double price;
     private String password;
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-            
     List<Skill> skills = new ArrayList<>();
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+            @JoinTable (name="Bookings")
+    List<Parent> parents = new ArrayList();
 
     public Nanny() {
     }
 
-    public Nanny(Long nId, String name, String gender, Date dob, String phone, String email, String location, Double price, String password) {
-        this.nId = nId;
+    public Nanny(String name, String gender, Date dob, String phone, String email, String location, Double price, String password) {
         this.name = name;
         this.gender = gender;
         this.dob = dob;
@@ -51,18 +52,6 @@ public class Nanny {
         this.location = location;
         this.price = price;
         this.password = password;
-    }
-
-    
-
-    
-
-    public Long getnId() {
-        return nId;
-    }
-
-    public void setnId(Long nId) {
-        this.nId = nId;
     }
 
     public String getName() {
@@ -152,12 +141,36 @@ public class Nanny {
         }
         return error;
     }
-   
+    
+    public void addParent(Parent parent){
+        parents.add(parent);
+    }
+    
+    public void removeParent(Parent parent) {
+        parents.remove(parent);
+    }
 
+    public List<Skill> getSkills() {
+        return skills;
+    }
+
+    public void setSkills(List<Skill> skills) {
+        this.skills = skills;
+    }
+
+    public List<Parent> getParents() {
+        return parents;
+    }
+
+    public void setParents(List<Parent> parents) {
+        this.parents = parents;
+    }
+
+    
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 17 * hash + Objects.hashCode(this.nId);
+        int hash = 5;
+        hash = 97 * hash + Objects.hashCode(this.email);
         return hash;
     }
 
@@ -173,11 +186,12 @@ public class Nanny {
             return false;
         }
         final Nanny other = (Nanny) obj;
-        if (!Objects.equals(this.nId, other.nId)) {
+        if (!Objects.equals(this.email, other.email)) {
             return false;
         }
         return true;
     }
+   
 
     
 }

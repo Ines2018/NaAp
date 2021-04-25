@@ -11,28 +11,26 @@ import Model.Parent;
 import Model.Review;
 import org.testng.annotations.Test;
 
-
 /**
  *
  * @author Ineza
  */
 @Test
 public class reviewTest {
-      public static void main(String[] args) {
+
+    public static void main(String[] args) {
         GenericDao dao = new GenericDao<>(Review.class);
-        
-        
-        Parent p = new Parent();
-        p.setpId(Long.parseLong("1"));
-        Nanny n = new Nanny();
-        n.setnId(Long.parseLong("17"));
-       Review r =new Review();
-          r.setParent(p);
-          r.setNanny(n);
-          r.setrId("03");
-          r.setRevDetails("Hello you are a gem");
-          
-          dao.create(r);
-    
-}
+        GenericDao pdao = new GenericDao<>(Parent.class);
+        GenericDao ndao = new GenericDao<>(Nanny.class);
+
+        Parent p = (Parent) pdao.findById("ines@gmail.com");
+        Nanny n = (Nanny) ndao.findById("asifiwemanzi@gmail.com");
+        Review r = new Review();
+        r.setParent(p);
+        r.setNanny(n);
+        r.setRevDetails("Hello you are a gem");
+
+        dao.create(r);
+
+    }
 }

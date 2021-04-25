@@ -22,7 +22,6 @@ public class test {
         GenericDao sdao = new GenericDao<Skill>(Skill.class);
         Nanny n= new Nanny();
         
-        n.setnId(Long.parseLong("125"));
         n.setName("mukamana");
         n.setPhone("250787098766");
         n.setEmail("iiii.som");

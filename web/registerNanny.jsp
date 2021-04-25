@@ -6,23 +6,14 @@
         <meta name="description" content="">
         <meta name="author"      content="Sergey Pozhilov (GetTemplate.com)">
 
-        <title>Sign in - Progressus Bootstrap template</title>
+        <title>Sign up</title>
 
         <link rel="shortcut icon" href="assets/images/gt_favicon.png">
-
         <link rel="stylesheet" media="screen" href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,700">
         <link rel="stylesheet" href="assets/css/bootstrap.min.css">
         <link rel="stylesheet" href="assets/css/font-awesome.min.css">
-
-        <!-- Custom styles for our template -->
         <link rel="stylesheet" href="assets/css/bootstrap-theme.css" media="screen" >
         <link rel="stylesheet" href="assets/css/main.css">
-
-        <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
-        <!--[if lt IE 9]>
-        <script src="assets/js/html5shiv.js"></script>
-        <script src="assets/js/respond.min.js"></script>
-        <![endif]-->
     </head>
 
     <body>
@@ -46,7 +37,7 @@
                             </ul>
                         </li>
                         <li><a href="contact.html">Contact</a></li>
-                        <li class="active"><a class="btn" href="registerNanny.jsp">Register</a></li>
+                        <li class="active"><a class="btn" href="loginNanny.jsp">SIGN IN</a></li>
                     </ul>
                 </div><!--/.nav-collapse -->
             </div>
@@ -59,8 +50,8 @@
         <div class="container">
 
             <ol class="breadcrumb">
-                <li><a href="index_2.html">Home</a></li>
-                <li class="active">User access</li>
+                <li><a href="index.html">Home</a></li>
+                <li class="active">Registration</li>
             </ol>
 
             <div class="row">
@@ -68,32 +59,69 @@
                 <!-- Article main content -->
                 <article class="col-xs-12 maincontent">
                     <header class="page-header">
-                        <h1 class="page-title">Sign in</h1>
+                        <h1 class="page-title">Registration</h1>
                     </header>
 
                     <div class="col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
                         <div class="panel panel-default">
                             <div class="panel-body">
-                                <h3 class="thin text-center">Sign in to your nanny account</h3><hr>
+                                <h3 class="thin text-center">Register a new Nanny account</h3><hr>
 
-                                <form action="Controller/loginNanny">
+                                <form action="Controller/createNanny">
                                     <div class="top-margin">
-                                        <label>Username/Email <span class="text-danger">*</span></label>
-                                        <input type="text" class="form-control" name="email">
+                                        <label>Name</label>
+                                        <input type="text" class="form-control" name="name">
                                     </div>
                                     <div class="top-margin">
-                                        <label>Password <span class="text-danger">*</span></label>
-                                        <input type="password" class="form-control" name="password">
+                                        <label>Gender</label>
+                                        <select name="gender">
+                                            <option></option>
+                                            <option>Male</option>
+                                            <option>Female</option>
+                                        </select>
+                                    </div>
+                                    <div class="top-margin">
+                                        <label>Date of Birth:</label>
+                                        <input type="date" class="form-control" name="dob">
+                                    </div>
+                                    <div class="top-margin">
+                                        <label>Phone</label>
+                                        <input type="number" class="form-control" name="phone">
+                                    </div>
+                                    <div class="top-margin">
+                                        <label>Location</label>
+                                        <input type="text" class="form-control" name="location">
+                                    </div>
+                                    <div class="top-margin">
+                                        <label>Price</label>
+                                        <input type="number" class="form-control" name="price">
+                                    </div>
+                                    <div class="top-margin">
+                                        <label>Email Address <span class="text-danger">*</span></label>
+                                        <input type="email" class="form-control" name="email">
+                                    </div>
+
+                                    <div class="row top-margin">
+                                        <div class="col-sm-6">
+                                            <label>Password <span class="text-danger">*</span></label>
+                                            <input type="password" class="form-control" name="password">
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <label>Confirm Password <span class="text-danger">*</span></label>
+                                            <input type="password" class="form-control" name="2password">
+                                        </div>
                                     </div>
 
                                     <hr>
 
                                     <div class="row">
                                         <div class="col-lg-8">
-                                            <b><a href="registerNanny.jsp">Don't have an account yet?</a></b>
+                                            <label class="checkbox">
+                                                <a href="loginNanny.jsp">Already have an account?</a>
+                                            </label>                        
                                         </div>
                                         <div class="col-lg-4 text-right">
-                                            <button class="btn btn-action" type="submit">Sign in</button>
+                                            <button class="btn btn-action" type="submit">Register</button>
                                         </div>
                                     </div>
                                 </form>

@@ -24,11 +24,9 @@ import javax.persistence.ManyToMany;
 @Entity
 public class Parent {
     
-    @Id
-    @GeneratedValue(strategy= GenerationType.AUTO )
-    private Long pId;
     private String name;
     private String phone;
+    @Id
     private String email;
     private String location;
     private String password;
@@ -38,23 +36,12 @@ public class Parent {
     public Parent() {
     }
 
-    public Parent(Long pId, String name, String phone, String email, String location, String password) {
-        this.pId = pId;
+    public Parent(String name, String phone, String email, String location, String password) {
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.location = location;
         this.password = password;
-    }
-
-    
-
-    public Long getpId() {
-        return pId;
-    }
-
-    public void setpId(Long pId) {
-        this.pId = pId;
     }
 
     public String getName() {
@@ -105,26 +92,26 @@ public class Parent {
         this.nannies = nannies;
     }
     
-      public void AddAppointment(Nanny nanny){
+    public void AddAppointment(Nanny nanny){
         nannies.add(nanny);
     }
     public void removeAppointnment(Nanny nanny){
         nannies.remove(nanny);
     }
     
-    public boolean isExist(String nId){
+    public boolean isExist(String email){
         boolean error=false;
         for (Nanny n : nannies) {
-            if(n.getnId().equals(nId))
+            if(n.getEmail().equals(email))
                 error = true;
         }
         return error;
     }
-    
+
     @Override
     public int hashCode() {
         int hash = 5;
-        hash = 19 * hash + Objects.hashCode(this.pId);
+        hash = 89 * hash + Objects.hashCode(this.email);
         return hash;
     }
 
@@ -140,11 +127,13 @@ public class Parent {
             return false;
         }
         final Parent other = (Parent) obj;
-        if (!Objects.equals(this.pId, other.pId)) {
+        if (!Objects.equals(this.email, other.email)) {
             return false;
         }
         return true;
     }
+    
+    
 
    
     

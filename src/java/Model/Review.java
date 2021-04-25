@@ -7,6 +7,8 @@ package Model;
 
 import java.util.Objects;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -18,12 +20,13 @@ import javax.persistence.ManyToOne;
 @Entity
 public class Review {
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private String rId;
     @ManyToOne
-    @JoinColumn (name= "pId")
+    @JoinColumn (name= "parent_email")
     private Parent parent;
     @ManyToOne
-    @JoinColumn (name= "nId")
+    @JoinColumn (name= "nanny_email")
     private Nanny nanny;
     private String revDetails;
 
