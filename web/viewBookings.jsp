@@ -30,7 +30,7 @@
 
 
     <%
-        Nanny nanny = (Nanny) request.getSession().getAttribute("nanny");
+        Nanny nanny = (Nanny) request.getSession().getAttribute("nannies");
 
         if (nanny == null) {
 
