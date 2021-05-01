@@ -50,46 +50,31 @@
     <%
         } else {
     %>
-    <body>
+    <body style="background-color:#232323">
 
         <%
             GenericDao<Nanny> ndao = new GenericDao<>(Nanny.class);
             List<Nanny> nannies = ndao.findAll();
         %>
-        <div class="page-wrap d-flex flex-row align-items-center">
-            <div class="container">
-                <div class="row justify-content-center">
-                    <div class="col-md-12 text-center">
-                        <span class="display-1 d-block">404</span>
-                        <div class="mb-4 lead">The page you are looking for was not found.</div>
-                        <a href="index.html" class="btn btn-link">Back to Home</a>
-                    </div>
-                </div>
-            </div>
-        </div>
+       
         
         <div class="navbar navbar-inverse navbar-fixed-top headroom" >
             <div class="container">
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse"><span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
-                    <a class="navbar-brand" href="index.html"><img src="assets/images/logo.png" alt="Progressus HTML5 template"></a>
+                    <a class="navbar-brand" href="index.html">NAAP</a>
                 </div>
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav pull-right">
                         <li><a href="index.html">Home</a></li>
                         <li><a href="about.html">About</a></li>
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">More Pages <b class="caret"></b></a>
-                            <ul class="dropdown-menu">
-                                <li><a href="sidebar-left.html">Left Sidebar</a></li>
-                                <li><a href="sidebar-right.html">Right Sidebar</a></li>
-                            </ul>
-                        </li>
+    
                         <li><a href="contact.html">Contact</a></li>
                         <li class="active"><a class="btn" href="parentController/logoutParent">Sign out</a></li>
                     </ul>
                 </div>
             </div> 
+        </div>
             <!-- /.navbar -->
 
 
@@ -97,7 +82,7 @@
 
             <div class="container">
 
-                <h3> View a nanny and book them </h3>
+                <h3 style="color:white"> View a nanny and book them </h3>
 
                 <ul class="list-group">
                     <%

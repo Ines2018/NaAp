@@ -117,7 +117,7 @@ public class Controller extends HttpServlet {
 
             Nanny nanny = ndao.findById(email);
             if (nanny != null && nanny.getPassword().equals(password)) {
-                request.getSession().setAttribute("nanny", nanny);
+                request.getSession().setAttribute("nannies", nanny);
                 response.sendRedirect("../viewBookings.jsp");
             } else {
                 response.sendRedirect("../errorPage.jsp");

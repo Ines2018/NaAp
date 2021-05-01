@@ -40,8 +40,9 @@
             <div class="container">
                 <div class="row justify-content-center">
                     <div class="col-md-12 text-center">
-                        <span class="display-1 d-block">404</span>
-                        <div class="mb-4 lead">The page you are looking for was not found.</div>
+                        <span class="display-1 d-block">401</span>
+                        <span class="display-1 d-block">UNAUTHORIZED</span>
+                        <div class="mb-4 lead">You must be logged in to access this page.</div>
                         <a href="index.html" class="btn btn-link">Back to Home</a>
                     </div>
                 </div>
@@ -53,25 +54,19 @@
     %>
 
 
-    <body>
+    <body style="background-color:#232323">
         <div class="navbar navbar-inverse navbar-fixed-top headroom" >
             <div class="container">
                 <div class="navbar-header">
                     <!-- Button for smallest screens -->
                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse"><span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
-                    <a class="navbar-brand" href="index.html"><img src="assets/images/logo.png" alt="Progressus HTML5 template"></a>
+                    <a class="navbar-brand" href="index.html">NAAP</a>
                 </div>
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav pull-right">
                         <li class="active"><a href="#">Home</a></li>
                         <li><a href="about.html">About</a></li>
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">More Pages <b class="caret"></b></a>
-                            <ul class="dropdown-menu">
-                                <li><a href="sidebar-left.html">Left Sidebar</a></li>
-                                <li class="active"><a href="sidebar-right.html">Right Sidebar</a></li>
-                            </ul>
-                        </li>
+                        
                         <li><a href="contact.html">Contact</a></li>>
                         <li><a class="btn" href="Controller/logoutNanny">Logout</a></li>
                     </ul>
@@ -82,7 +77,7 @@
 
             <header id="head" class="secondary"></header>
             <div class="container">
-                <h2>View Bookings</h2>  
+                <h2 style="color:white">View Bookings</h2>  
                 <ul class="list-group">
                     <%
                         int i=0;
